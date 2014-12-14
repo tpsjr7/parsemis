@@ -108,7 +108,7 @@ public class LineGraphParser<NodeType, EdgeType> implements
 		String line = bin.readLine();
 		Graph<NodeType, EdgeType> g = null;
 		while (line != null) {
-			if (line.startsWith("t # ")) {
+			if (line.startsWith("t # ") || line.startsWith("# t ")) {
 				if (text != "") {
 					text = text.substring(0, text.length() - 1);
 					g = parse(text, factory);
