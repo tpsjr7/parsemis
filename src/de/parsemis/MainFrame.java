@@ -60,13 +60,12 @@ import de.parsemis.visualisation.prefuseVisualisation.PrefuseVisualisationSettin
  * @author Marc Woerlein (woerlein@informatik.uni-erlangen.de)
  * 
  */
-@SuppressWarnings("unchecked")
-public class MainFrame extends Thread implements ActionListener,
-		PropertyChangeListener {
+ public class MainFrame<NodeType, EdgeType> extends Thread implements ActionListener,
+		PropertyChangeListener  {
 
 	static public ArrayList<HPGraph> embGraphs;
 
-	static Collection<Graph<?, ?>> parsedGraphs;
+	Collection<Graph<NodeType, EdgeType>> parsedGraphs;
 
 	static int graphsNumber = 0;
 
@@ -223,7 +222,7 @@ public class MainFrame extends Thread implements ActionListener,
 					}
 					actionPerformed(new ActionEvent(this, 0, props
 							.getProperty("running")));
-					Collection<Fragment> fragments = null;
+					Collection<Fragment<NodeType, EdgeType>> fragments = null;
 
 					// try {
 					String[] set = new String[] {
@@ -231,19 +230,7 @@ public class MainFrame extends Thread implements ActionListener,
 							"--minimumFrequency=" + minimumFrequency,
 							options[typeIndex],
 							"--connectedFragments=" + isClosed };
-					Settings settings = Settings.parse(set);
-					settings.graphs = parsedGraphs;
-
-					// TODO set algorithmus type for the mining
-					switch (algoIndex) {
-					case 0:
-						settings.algorithm = new de.parsemis.algorithms.gSpan.Algorithm();
-						break;
-					default:
-						settings.algorithm = new de.parsemis.algorithms.gSpan.Algorithm();
-					}
-
-					fragments = Miner.mine(settings.graphs, settings);
+					fragments = helper(set);
 					// } catch (InstantiationException e) {
 					// System.err.println("Demo::actionPerformed:: "
 					// + e.getMessage());
@@ -288,6 +275,25 @@ public class MainFrame extends Thread implements ActionListener,
 					}
 					actionPerformed(new ActionEvent(this, 0, "search done"));
 
+				}
+
+				private Collection<Fragment<NodeType, EdgeType>> helper(String[] set) {
+					Collection<Fragment<NodeType, EdgeType>> fragments;
+					Settings<NodeType, EdgeType> settings = Settings.parse(set);
+					settings.graphs = parsedGraphs;
+
+					// TODO set algorithmus type for the mining
+					switch (algoIndex) {
+					case 0:
+						settings.algorithm = new de.parsemis.algorithms.gSpan.Algorithm();
+						break;
+					default:
+						settings.algorithm = new de.parsemis.algorithms.gSpan.Algorithm();
+					}
+
+					
+					fragments = Miner.mine(settings.graphs, settings);
+					return fragments;
 				}
 			};
 			t.start();

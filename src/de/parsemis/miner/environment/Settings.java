@@ -117,8 +117,7 @@ public final class Settings<NodeType, EdgeType> {
 	 * @return the (untyped) settings representing the given parameters, or
 	 *         <code>null</code> if help is wished
 	 */
-	@SuppressWarnings("unchecked")
-	public final static Settings parse(final String[] args) {
+	public final static <NodeType, EdgeType> Settings<NodeType, EdgeType> parse(final String[] args) {
 		return parse(args, null, null, null, null, null);
 	}
 
