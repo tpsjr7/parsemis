@@ -1,0 +1,20 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>de.parsemis</groupId>
+  <artifactId>parsemis</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>ParSeMiS</name>
+  <description>The ParSeMiS project (Parallel and Sequential Graph Mining Suite) searches for frequent, interesting substructures in graph databases. https://www2.cs.fau.de/EN/research/zold/ParSeMiS/index.html</description>
+  <dependencies>
+  	<dependency>
+  		<groupId>antlr</groupId>
+  		<artifactId>antlr</artifactId>
+  		<version>2.7.6</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.prefuse</groupId>
+  		<artifactId>prefuse</artifactId>
+  		<version>beta-20071021</version>
+  	</dependency>
+  </dependencies>
+</project>

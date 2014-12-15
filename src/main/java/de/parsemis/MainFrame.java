@@ -76,7 +76,8 @@ import de.parsemis.visualisation.prefuseVisualisation.PrefuseVisualisationSettin
 	// default work directory
 	public final static String defaultPath = System.getProperty("user.dir")
 			// + File.separator + "branches" + File.separator + "main"
-			+ File.separator + File.separator + "src" + File.separator + "de"
+			+ File.separator + File.separator + "src" + File.separator + "main" + File.separator 
+			+ "java" + File.separator + "de"
 			+ File.separator + "parsemis" + File.separator + "visualisation"
 			+ File.separator + "gui";
 
